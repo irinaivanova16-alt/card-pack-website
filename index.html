@@ -6,20 +6,23 @@
 <style>
 
 body{
-background:#0f172a;
+background:linear-gradient(#0f172a,#1e3a8a);
 font-family:Arial;
 text-align:center;
 color:white;
+margin:0;
 }
 
 h1{
 margin-top:40px;
+font-size:40px;
 }
 
 #pack{
-width:400px;
+width:500px;
 cursor:pointer;
 transition:0.3s;
+margin-top:30px;
 }
 
 #pack:hover{
@@ -27,7 +30,7 @@ transform:scale(1.1);
 }
 
 #cards{
-margin-top:40px;
+margin-top:50px;
 display:flex;
 justify-content:center;
 gap:20px;
@@ -36,7 +39,8 @@ flex-wrap:wrap;
 
 .card{
 width:180px;
-border-radius:10px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,0.5);
 }
 
 </style>
@@ -44,41 +48,50 @@ border-radius:10px;
 
 <body>
 
-<h1>LEO PACKS</h1>
+<h1>🦁 LEO PACKS</h1>
 
-<p>Tap the pack to open!</p>
+<p>Click the pack to open!</p>
 
-<img id="pack" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Panini_sticker_pack.jpg" onclick="openPack()">
+<img id="pack" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Football_card_pack.jpg/512px-Football_card_pack.jpg" onclick="openPack()">
 
 <div id="cards"></div>
 
 <script>
 
 const players = [
+
 "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Lionel_Messi.jpg",
+
 "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
+
 "https://upload.wikimedia.org/wikipedia/commons/7/7c/Neymar_2018.jpg",
+
 "https://upload.wikimedia.org/wikipedia/commons/5/5c/Kylian_Mbappe_2019.jpg",
+
 "https://upload.wikimedia.org/wikipedia/commons/8/89/Erling_Haaland_2020.jpg",
-"https://upload.wikimedia.org/wikipedia/commons/7/7e/Kevin_De_Bruyne_201807091.jpg",
-"https://upload.wikimedia.org/wikipedia/commons/2/2c/Mohamed_Salah_2018.jpg"
+
+"https://upload.wikimedia.org/wikipedia/commons/2/2c/Mohamed_Salah_2018.jpg",
+
+"https://upload.wikimedia.org/wikipedia/commons/7/7e/Kevin_De_Bruyne_201807091.jpg"
+
 ]
 
 function openPack(){
 
-let cards = document.getElementById("cards")
+let cardArea = document.getElementById("cards")
 
-cards.innerHTML=""
+cardArea.innerHTML=""
 
-for(let i=0;i<3;i++){
+for(let i=0;i<5;i++){
 
-let random = players[Math.floor(Math.random()*players.length)]
+let randomPlayer = players[Math.floor(Math.random()*players.length)]
 
-let img = document.createElement("img")
-img.src=random
-img.className="card"
+let card = document.createElement("img")
 
-cards.appendChild(img)
+card.src = randomPlayer
+card.className = "card"
+
+cardArea.appendChild(card)
 
 }
 
