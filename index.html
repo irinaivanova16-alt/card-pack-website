@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LEO PACKS</title>
+<title>LEO PACKS Store</title>
 
 <style>
 
 body{
-background:#0f172a;
 font-family:Arial;
-text-align:center;
+margin:0;
+background:linear-gradient(135deg,#0f172a,#1e293b);
 color:white;
+text-align:center;
 }
 
-h1{
+header{
+background:#111827;
+padding:20px;
+font-size:32px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.store{
 margin-top:40px;
-font-size:40px;
+}
+
+.pack-container{
+background:white;
+color:black;
+width:320px;
+margin:auto;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 #pack{
-width:220px;
+width:260px;
 cursor:pointer;
 transition:0.3s;
-margin-top:40px;
 }
 
 #pack:hover{
@@ -33,44 +50,32 @@ margin-top:40px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:15px;
+gap:20px;
+padding:20px;
 }
 
 .card{
-width:130px;
-height:180px;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-font-size:14px;
-animation:flip 0.6s;
+width:150px;
+height:210px;
+border-radius:12px;
+overflow:hidden;
+animation:flip 0.5s;
+box-shadow:0 5px 15px rgba(0,0,0,0.4);
 }
 
-.common{
-background:#cbd5e1;
-color:black;
-}
-
-.rare{
-background:#4ade80;
-color:black;
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 .ultra{
-background:gold;
-color:black;
-box-shadow:0 0 20px gold;
+box-shadow:0 0 25px gold;
 }
 
 @keyframes flip{
-from{
-transform:rotateY(90deg);
-}
-to{
-transform:rotateY(0deg);
-}
+from{transform:rotateY(90deg);}
+to{transform:rotateY(0deg);}
 }
 
 </style>
@@ -78,39 +83,41 @@ transform:rotateY(0deg);
 
 <body>
 
-<h1>LEO PACKS</h1>
-<p>Click the pack to open</p>
+<header>🦁 LEO PACKS</header>
+
+<div class="store">
+
+<div class="pack-container">
+<h2>Premium Pack</h2>
+<p>10 Cards • 1 Guaranteed Rare</p>
 
 <img id="pack" src="IMG_0259.png">
+
+<p>Click pack to open</p>
+</div>
+
+</div>
 
 <div id="cards"></div>
 
 <script>
 
 const commons = [
-"Lionel Messi",
-"Neymar",
-"Kylian Mbappe",
-"Luka Modric",
-"Kevin De Bruyne",
-"Erling Haaland",
-"Harry Kane",
-"Vinicius Jr",
-"Pedri",
-"Bellingham"
+"https://i.imgur.com/jqG4Z9B.png",
+"https://i.imgur.com/yXOvdOS.png",
+"https://i.imgur.com/gd2kV8X.png",
+"https://i.imgur.com/r5W9GJY.png"
 ]
 
 const rares = [
-"Zinedine Zidane",
-"Ronaldinho",
-"David Beckham",
-"Thierry Henry",
-"Andres Iniesta"
+"https://i.imgur.com/txN4K9F.png",
+"https://i.imgur.com/akvFq5T.png"
 ]
 
-const ultraRare = "Golden Cristiano Ronaldo ⭐"
+const ultra =
+"https://i.imgur.com/qO7QZkK.png"
 
-document.getElementById("pack").onclick = openPack
+document.getElementById("pack").onclick=openPack
 
 function openPack(){
 
@@ -120,62 +127,62 @@ let pack=[]
 
 for(let i=0;i<8;i++){
 pack.push({
-name: commons[Math.floor(Math.random()*commons.length)],
+img:commons[Math.floor(Math.random()*commons.length)],
 rarity:"common"
 })
 }
 
 pack.push({
-name: rares[Math.floor(Math.random()*rares.length)],
+img:rares[Math.floor(Math.random()*rares.length)],
 rarity:"rare"
 })
 
-let chance = Math.floor(Math.random()*200)
+let chance=Math.floor(Math.random()*200)
 
-if(chance === 1){
-
-pack.push({
-name: ultraRare,
-rarity:"ultra"
-})
-
+if(chance===1){
+pack.push({img:ultra,rarity:"ultra"})
 }else{
-
 pack.push({
-name: commons[Math.floor(Math.random()*commons.length)],
+img:commons[Math.floor(Math.random()*commons.length)],
 rarity:"common"
 })
+}
+
+reveal(pack)
 
 }
 
-revealCards(pack)
+function reveal(pack){
 
-}
+let i=0
 
-function revealCards(pack){
+function show(){
 
-let i = 0
+if(i>=pack.length) return
 
-function showCard(){
-
-if(i >= pack.length) return
-
-let card = document.createElement("div")
+let card=document.createElement("div")
 
 card.classList.add("card")
-card.classList.add(pack[i].rarity)
 
-card.innerText = pack[i].name
+if(pack[i].rarity==="ultra"){
+card.classList.add("ultra")
+}
+
+let img=document.createElement("img")
+
+img.src=pack[i].img
+
+card.appendChild(img)
 
 document.getElementById("cards").appendChild(card)
 
 i++
 
-setTimeout(showCard,400)
+setTimeout(show,400)
 
 }
 
-showCard()
+show()
 
 }
 
