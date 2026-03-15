@@ -6,7 +6,7 @@
 <style>
 
 body{
-background:linear-gradient(#0f172a,#1e3a8a);
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
 font-family:Arial;
 text-align:center;
 color:white;
@@ -14,15 +14,15 @@ margin:0;
 }
 
 h1{
-margin-top:40px;
+margin-top:30px;
 font-size:40px;
 }
 
 #pack{
-width:500px;
+width:420px;
 cursor:pointer;
 transition:0.3s;
-margin-top:30px;
+margin-top:20px;
 }
 
 #pack:hover{
@@ -30,17 +30,27 @@ transform:scale(1.1);
 }
 
 #cards{
-margin-top:50px;
+margin-top:40px;
 display:flex;
 justify-content:center;
-gap:20px;
 flex-wrap:wrap;
+gap:20px;
 }
 
 .card{
-width:180px;
+width:160px;
 border-radius:12px;
-box-shadow:0 10px 20px rgba(0,0,0,0.5);
+box-shadow:0 8px 20px rgba(0,0,0,0.6);
+}
+
+.gold{
+border:5px solid gold;
+box-shadow:0 0 25px gold;
+}
+
+#packsLeft{
+font-size:20px;
+margin-top:10px;
 }
 
 </style>
@@ -50,46 +60,86 @@ box-shadow:0 10px 20px rgba(0,0,0,0.5);
 
 <h1>🦁 LEO PACKS</h1>
 
-<p>Click the pack to open!</p>
+<div id="packsLeft">Packs Left: 200</div>
 
-<img id="pack" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Football_card_pack.jpg/512px-Football_card_pack.jpg" onclick="openPack()">
+<img id="pack" src="IMG_0259.png" onclick="openPack()">
 
 <div id="cards"></div>
 
 <script>
 
+let packs = 200
+
 const players = [
 
-"https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Lionel_Messi.jpg",
+{
+name:"Messi",
+img:"https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Lionel_Messi.jpg"
+},
 
-"https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
+{
+name:"Mbappe",
+img:"https://upload.wikimedia.org/wikipedia/commons/5/5c/Kylian_Mbappe_2019.jpg"
+},
 
-"https://upload.wikimedia.org/wikipedia/commons/7/7c/Neymar_2018.jpg",
+{
+name:"Haaland",
+img:"https://upload.wikimedia.org/wikipedia/commons/3/3e/Erling_Haaland_2023.jpg"
+},
 
-"https://upload.wikimedia.org/wikipedia/commons/5/5c/Kylian_Mbappe_2019.jpg",
+{
+name:"Neymar",
+img:"https://upload.wikimedia.org/wikipedia/commons/7/7c/Neymar_2018.jpg"
+},
 
-"https://upload.wikimedia.org/wikipedia/commons/8/89/Erling_Haaland_2020.jpg",
+{
+name:"Salah",
+img:"https://upload.wikimedia.org/wikipedia/commons/2/2c/Mohamed_Salah_2018.jpg"
+},
 
-"https://upload.wikimedia.org/wikipedia/commons/2/2c/Mohamed_Salah_2018.jpg",
-
-"https://upload.wikimedia.org/wikipedia/commons/7/7e/Kevin_De_Bruyne_201807091.jpg"
+{
+name:"De Bruyne",
+img:"https://upload.wikimedia.org/wikipedia/commons/7/7e/Kevin_De_Bruyne_201807091.jpg"
+}
 
 ]
 
+const ronaldo = {
+name:"Cristiano Ronaldo ULTRA RARE",
+img:"https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg"
+}
+
 function openPack(){
 
-let cardArea = document.getElementById("cards")
+if(packs <= 0){
+alert("No packs left!")
+return
+}
 
-cardArea.innerHTML=""
+packs--
+document.getElementById("packsLeft").innerText = "Packs Left: " + packs
+
+let cardArea = document.getElementById("cards")
+cardArea.innerHTML = ""
 
 for(let i=0;i<5;i++){
 
-let randomPlayer = players[Math.floor(Math.random()*players.length)]
-
 let card = document.createElement("img")
 
-card.src = randomPlayer
+let chance = Math.random()
+
+if(chance < 0.05){
+
+card.src = ronaldo.img
+card.className = "card gold"
+
+}else{
+
+let random = players[Math.floor(Math.random()*players.length)]
+card.src = random.img
 card.className = "card"
+
+}
 
 cardArea.appendChild(card)
 
