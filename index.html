@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Card Pack Opening</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+#pack{
+width:220px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#pack:hover{
+transform:scale(1.1);
+}
+
+#cards{
+margin-top:30px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+}
+
+.card{
+width:120px;
+height:170px;
+background:white;
+color:black;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.common{
+background:#d4d4d4;
+}
+
+.rare{
+background:#4ade80;
+}
+
+.ultra{
+background:gold;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Open a Card Pack</h1>
+
+<img id="pack" src="https://i.imgur.com/3ZQ3Z6P.png">
+
+<div id="cards"></div>
+
+<script>
+
+const commons = [
+"Lionel Messi",
+"Neymar",
+"Kylian Mbappe",
+"Luka Modric",
+"Kevin De Bruyne",
+"Erling Haaland",
+"Harry Kane",
+"Vinicius Jr"
+]
+
+const rares = [
+"Zinedine Zidane",
+"Ronaldinho",
+"Thierry Henry",
+"David Beckham"
+]
+
+const ultraRare = "Golden Cristiano Ronaldo"
+
+document.getElementById("pack").onclick = openPack
+
+function openPack(){
+
+document.getElementById("cards").innerHTML=""
+
+let pack=[]
+
+// 8 commons
+for(let i=0;i<8;i++){
+pack.push({
+name: commons[Math.floor(Math.random()*commons.length)],
+rarity:"common"
+})
+}
+
+// guaranteed rare
+pack.push({
+name: rares[Math.floor(Math.random()*rares.length)],
+rarity:"rare"
+})
+
+// ultra rare chance
+let chance=Math.floor(Math.random()*200)
+
+if(chance==1){
+
+pack.push({
+name: ultraRare,
+rarity:"ultra"
+})
+
+}else{
+
+pack.push({
+name: commons[Math.floor(Math.random()*commons.length)],
+rarity:"common"
+})
+
+}
+
+revealCards(pack)
+
+}
+
+function revealCards(pack){
+
+let i=0
+
+function showCard(){
+
+if(i>=pack.length) return
+
+let card=document.createElement("div")
+
+card.classList.add("card")
+card.classList.add(pack[i].rarity)
+
+card.innerText=pack[i].name
+
+document.getElementById("cards").appendChild(card)
+
+i++
+
+setTimeout(showCard,400)
+
+}
+
+showCard()
+
+}
+
+</script>
+
+</body>
+</html>
