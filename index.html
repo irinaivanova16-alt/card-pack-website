@@ -1,68 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Meteor Drop Game</title>
+<title>World Fireworks Game</title>
 
 <style>
 
 body{
 margin:0;
 font-family:Arial;
+overflow:hidden;
 background:#0f172a;
 color:white;
 text-align:center;
 }
 
-h1{
-margin:20px;
-}
-
 #map{
 position:relative;
-width:90%;
-max-width:900px;
-margin:auto;
+width:100vw;
+height:100vh;
 }
 
 #map img{
 width:100%;
-border-radius:10px;
+height:100%;
+object-fit:cover;
 }
 
 #marker{
 position:absolute;
-font-size:40px;
+font-size:45px;
 cursor:grab;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
 }
 
-#countdown{
-font-size:50px;
-margin-top:20px;
-}
-
-.meteor{
+#ui{
 position:absolute;
-font-size:30px;
-animation:fall 1s linear forwards;
-}
-
-@keyframes fall{
-from{
-transform:translateY(-200px);
-}
-to{
-transform:translateY(0);
-}
+top:20px;
+left:50%;
+transform:translateX(-50%);
+text-align:center;
 }
 
 button{
-margin-top:20px;
-padding:10px 20px;
-background:#3b82f6;
+padding:12px 25px;
+font-size:18px;
 border:none;
-border-radius:6px;
+border-radius:10px;
+background:#f43f5e;
 color:white;
 cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#e11d48;
+}
+
+#countdown{
+font-size:60px;
+margin-top:10px;
+}
+
+.firework{
+position:absolute;
+font-size:30px;
+animation:boom 1s ease-out forwards;
+}
+
+@keyframes boom{
+
+0%{
+transform:scale(0.3);
+opacity:1;
+}
+
+100%{
+transform:scale(2);
+opacity:0;
+}
+
 }
 
 </style>
@@ -70,46 +88,44 @@ cursor:pointer;
 
 <body>
 
-<h1>🌍 Meteor Drop Game</h1>
-<p>Drag the X on the map and launch meteors!</p>
-
 <div id="map">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/2000px-World_map_-_low_resolution.svg.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg">
 
 <div id="marker">❌</div>
 
-</div>
+<div id="ui">
+
+<h2>🌍 World Fireworks Game</h2>
+<p>Drag the X and launch fireworks!</p>
+
+<button onclick="launch()">Launch</button>
 
 <div id="countdown"></div>
 
-<button onclick="launch()">Launch Meteors</button>
+</div>
+
+</div>
 
 <script>
 
 const marker=document.getElementById("marker")
 const map=document.getElementById("map")
-let offsetX,offsetY
+let dragging=false
 
-marker.onmousedown=function(e){
+marker.addEventListener("mousedown",()=>dragging=true)
+document.addEventListener("mouseup",()=>dragging=false)
 
-offsetX=e.offsetX
-offsetY=e.offsetY
+document.addEventListener("mousemove",(e)=>{
 
-document.onmousemove=function(e){
+if(!dragging) return
 
 const rect=map.getBoundingClientRect()
 
-marker.style.left=(e.clientX-rect.left-offsetX)+"px"
-marker.style.top=(e.clientY-rect.top-offsetY)+"px"
+marker.style.left=(e.clientX-rect.left)+"px"
+marker.style.top=(e.clientY-rect.top)+"px"
 
-}
-
-document.onmouseup=function(){
-document.onmousemove=null
-}
-
-}
+})
 
 function launch(){
 
@@ -126,9 +142,9 @@ if(count<0){
 
 clearInterval(timer)
 
-countdown.innerText="💥"
+countdown.innerText="🎆"
 
-dropMeteors()
+fireworks()
 
 }
 
@@ -136,19 +152,21 @@ dropMeteors()
 
 }
 
-function dropMeteors(){
+function fireworks(){
 
-for(let i=0;i<6;i++){
+for(let i=0;i<8;i++){
 
-let meteor=document.createElement("div")
+let f=document.createElement("div")
 
-meteor.className="meteor"
-meteor.innerText="☄️"
+f.className="firework"
+f.innerText="🎆"
 
-meteor.style.left=marker.style.left
-meteor.style.top=marker.style.top
+f.style.left=marker.style.left
+f.style.top=marker.style.top
 
-map.appendChild(meteor)
+map.appendChild(f)
+
+setTimeout(()=>f.remove(),1000)
 
 }
 
