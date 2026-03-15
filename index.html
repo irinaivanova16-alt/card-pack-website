@@ -1,150 +1,229 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Image Value Lab</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
-body{
-font-family:Arial;
+*{
 margin:0;
-background:linear-gradient(135deg,#1e3a8a,#0f172a);
-color:white;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
 }
 
-header{
-padding:20px;
+body{
+background:linear-gradient(120deg,#0f172a,#1e3a8a);
+color:white;
+min-height:100vh;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:rgba(0,0,0,0.2);
+backdrop-filter:blur(10px);
+}
+
+nav h1{
+font-size:24px;
+}
+
+nav ul{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+nav li{
+cursor:pointer;
+opacity:0.8;
+}
+
+nav li:hover{
+opacity:1;
+}
+
+.hero{
 text-align:center;
-font-size:28px;
-font-weight:bold;
+padding:60px 20px;
+}
+
+.hero h2{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:0.8;
 }
 
 .container{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
 padding:20px;
 }
 
-.card{
+.upload-box{
+border:2px dashed rgba(255,255,255,0.4);
+padding:40px;
+border-radius:15px;
+text-align:center;
+margin-top:30px;
+transition:0.3s;
+}
+
+.upload-box:hover{
+border-color:#60a5fa;
+background:rgba(255,255,255,0.05);
+}
+
+input{
+margin-top:20px;
+}
+
+.preview-card{
+margin-top:30px;
 background:#1e293b;
 padding:20px;
-border-radius:12px;
-margin-bottom:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
+border-radius:15px;
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
 }
 
-button{
-background:#3b82f6;
-border:none;
-padding:10px 20px;
-border-radius:8px;
-color:white;
-cursor:pointer;
-margin-top:10px;
-}
-
-button:hover{
-background:#2563eb;
-}
-
-img{
-max-width:100%;
+.preview-card img{
+width:100%;
 border-radius:10px;
-margin-top:15px;
 }
 
 .price{
-font-size:24px;
+font-size:28px;
 color:#22c55e;
 margin-top:10px;
 }
 
 .gallery{
+margin-top:40px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:15px;
-margin-top:20px;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:20px;
 }
 
 .gallery img{
 width:100%;
+border-radius:10px;
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+footer{
+margin-top:60px;
+padding:30px;
+text-align:center;
+opacity:0.6;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header>
-🧠 Image Value Lab
-</header>
+<nav>
+
+<h1>🧠 Image Value Lab</h1>
+
+<ul>
+<li>Home</li>
+<li>Gallery</li>
+<li>Features</li>
+<li>About</li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<h2>AI Image Price Analyzer</h2>
+<p>Upload an image and discover its estimated value</p>
+
+</section>
 
 <div class="container">
 
-<div class="card">
+<div class="upload-box">
 
-<h2>Upload an Image</h2>
+<h3>Upload Your Image</h3>
 
 <input type="file" id="upload" accept="image/*">
 
-<img id="preview" style="display:none;">
+</div>
+
+<div class="preview-card" id="previewCard" style="display:none;">
+
+<img id="preview">
 
 <div class="price" id="price"></div>
 <div id="rarity"></div>
 
 </div>
 
-<div class="card">
-
-<h2>Your Image Gallery</h2>
+<h2 style="margin-top:40px">Your Gallery</h2>
 
 <div class="gallery" id="gallery"></div>
 
 </div>
 
-</div>
+<footer>
+
+Built with ❤️ on GitHub Pages
+
+</footer>
 
 <script>
 
-const upload = document.getElementById("upload");
-const preview = document.getElementById("preview");
-const price = document.getElementById("price");
-const rarity = document.getElementById("rarity");
-const gallery = document.getElementById("gallery");
+const upload = document.getElementById("upload")
+const preview = document.getElementById("preview")
+const price = document.getElementById("price")
+const rarity = document.getElementById("rarity")
+const gallery = document.getElementById("gallery")
+const previewCard = document.getElementById("previewCard")
 
-const rarityLevels = [
-"Common",
-"Uncommon",
-"Rare",
-"Epic",
-"Legendary"
-];
+const rarityLevels=["Common","Uncommon","Rare","Epic","Legendary"]
 
-upload.addEventListener("change", function(){
+upload.addEventListener("change",function(){
 
-const file = upload.files[0];
+const file = upload.files[0]
 
 if(file){
 
-const imageURL = URL.createObjectURL(file);
+const url = URL.createObjectURL(file)
 
-preview.src = imageURL;
-preview.style.display = "block";
+preview.src=url
 
-let estimatedPrice = Math.floor(Math.random()*500)+20;
-let rarityScore = rarityLevels[Math.floor(Math.random()*rarityLevels.length)];
+previewCard.style.display="block"
 
-price.innerText = "Estimated Value: $" + estimatedPrice;
-rarity.innerText = "Rarity Level: " + rarityScore;
+let value=Math.floor(Math.random()*500)+50
+let rarityLevel=rarityLevels[Math.floor(Math.random()*rarityLevels.length)]
 
-const img = document.createElement("img");
-img.src = imageURL;
+price.innerText="Estimated Value: $"+value
+rarity.innerText="Rarity: "+rarityLevel
 
-gallery.appendChild(img);
+let img=document.createElement("img")
+img.src=url
+
+gallery.appendChild(img)
 
 }
 
-});
+})
 
 </script>
 
