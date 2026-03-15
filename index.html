@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Card Pack Opening</title>
+<title>LEO PACKS</title>
 
 <style>
 
 body{
 background:#0f172a;
-color:white;
 font-family:Arial;
 text-align:center;
+color:white;
+}
+
+h1{
+margin-top:40px;
+font-size:40px;
 }
 
 #pack{
 width:220px;
 cursor:pointer;
 transition:0.3s;
+margin-top:40px;
 }
 
 #pack:hover{
@@ -23,35 +29,48 @@ transform:scale(1.1);
 }
 
 #cards{
-margin-top:30px;
+margin-top:40px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:10px;
+gap:15px;
 }
 
 .card{
-width:120px;
-height:170px;
-background:white;
-color:black;
+width:130px;
+height:180px;
 border-radius:10px;
 display:flex;
 align-items:center;
 justify-content:center;
 font-weight:bold;
+font-size:14px;
+animation:flip 0.6s;
 }
 
 .common{
-background:#d4d4d4;
+background:#cbd5e1;
+color:black;
 }
 
 .rare{
 background:#4ade80;
+color:black;
 }
 
 .ultra{
 background:gold;
+color:black;
+box-shadow:0 0 20px gold;
+}
+
+@keyframes flip{
+from{
+transform:rotateY(90deg);
+}
+to{
+transform:rotateY(0deg);
+}
 }
 
 </style>
@@ -59,9 +78,10 @@ background:gold;
 
 <body>
 
-<h1>Open a Card Pack</h1>
+<h1>LEO PACKS</h1>
+<p>Click the pack to open</p>
 
-<img id="pack" src="https://i.imgur.com/3ZQ3Z6P.png">
+<img id="pack" src="IMG_0259.png">
 
 <div id="cards"></div>
 
@@ -75,17 +95,20 @@ const commons = [
 "Kevin De Bruyne",
 "Erling Haaland",
 "Harry Kane",
-"Vinicius Jr"
+"Vinicius Jr",
+"Pedri",
+"Bellingham"
 ]
 
 const rares = [
 "Zinedine Zidane",
 "Ronaldinho",
+"David Beckham",
 "Thierry Henry",
-"David Beckham"
+"Andres Iniesta"
 ]
 
-const ultraRare = "Golden Cristiano Ronaldo"
+const ultraRare = "Golden Cristiano Ronaldo ⭐"
 
 document.getElementById("pack").onclick = openPack
 
@@ -95,7 +118,6 @@ document.getElementById("cards").innerHTML=""
 
 let pack=[]
 
-// 8 commons
 for(let i=0;i<8;i++){
 pack.push({
 name: commons[Math.floor(Math.random()*commons.length)],
@@ -103,16 +125,14 @@ rarity:"common"
 })
 }
 
-// guaranteed rare
 pack.push({
 name: rares[Math.floor(Math.random()*rares.length)],
 rarity:"rare"
 })
 
-// ultra rare chance
-let chance=Math.floor(Math.random()*200)
+let chance = Math.floor(Math.random()*200)
 
-if(chance==1){
+if(chance === 1){
 
 pack.push({
 name: ultraRare,
@@ -134,18 +154,18 @@ revealCards(pack)
 
 function revealCards(pack){
 
-let i=0
+let i = 0
 
 function showCard(){
 
-if(i>=pack.length) return
+if(i >= pack.length) return
 
-let card=document.createElement("div")
+let card = document.createElement("div")
 
 card.classList.add("card")
 card.classList.add(pack[i].rarity)
 
-card.innerText=pack[i].name
+card.innerText = pack[i].name
 
 document.getElementById("cards").appendChild(card)
 
