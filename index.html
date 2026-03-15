@@ -6,54 +6,52 @@
 <style>
 
 body{
-    font-family: Arial;
-    background:#0f172a;
-    color:white;
-    text-align:center;
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
 }
 
 h1{
-    margin-top:30px;
+margin-top:30px;
 }
 
 .shop{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    margin-top:40px;
-    flex-wrap:wrap;
+display:grid;
+grid-template-columns:repeat(5, 1fr);
+gap:20px;
+padding:40px;
 }
 
 .card{
-    background:#1e293b;
-    padding:20px;
-    border-radius:10px;
-    width:200px;
-    box-shadow:0px 0px 10px rgba(0,0,0,0.5);
+background:#1e293b;
+padding:15px;
+border-radius:10px;
+box-shadow:0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .card img{
-    width:100%;
-    border-radius:8px;
+width:100%;
+border-radius:8px;
 }
 
 .price{
-    font-size:20px;
-    margin:10px 0;
-    color:#22c55e;
+font-size:18px;
+margin:8px 0;
+color:#22c55e;
 }
 
 button{
-    background:#3b82f6;
-    border:none;
-    padding:10px 20px;
-    border-radius:6px;
-    color:white;
-    cursor:pointer;
+background:#3b82f6;
+border:none;
+padding:8px 15px;
+border-radius:6px;
+color:white;
+cursor:pointer;
 }
 
 button:hover{
-    background:#2563eb;
+background:#2563eb;
 }
 
 </style>
@@ -62,30 +60,40 @@ button:hover{
 <body>
 
 <h1>⚽ Soccer Card Shop</h1>
-<p>Browse our soccer cards collection!</p>
+<p>Browse our soccer card collection!</p>
 
 <div class="shop">
 
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Lionel_Messi_20180626.jpg">
-<h3>Lionel Messi Card</h3>
-<div class="price">$120</div>
-<button>Buy</button>
-</div>
+<!-- 25 CARDS -->
 
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Cristiano_Ronaldo_2018.jpg">
-<h3>Cristiano Ronaldo Card</h3>
-<div class="price">$150</div>
-<button>Buy</button>
-</div>
+<script>
 
+const players = [
+"Lionel Messi","Cristiano Ronaldo","Kylian Mbappé","Erling Haaland","Neymar",
+"Jude Bellingham","Kevin De Bruyne","Mohamed Salah","Vinicius Jr","Harry Kane",
+"Robert Lewandowski","Bukayo Saka","Pedri","Luka Modric","Antoine Griezmann",
+"Karim Benzema","Son Heung-min","Phil Foden","Rodri","Bernardo Silva",
+"Alphonso Davies","Achraf Hakimi","Victor Osimhen","Gavi","Jamal Musiala"
+];
+
+const shop = document.querySelector(".shop");
+
+players.forEach((player,i)=>{
+
+let price = Math.floor(Math.random()*200)+20;
+
+shop.innerHTML += `
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Kylian_Mbappe_2019.jpg">
-<h3>Kylian Mbappé Card</h3>
-<div class="price">$95</div>
+<img src="https://picsum.photos/200/300?random=${i}">
+<h3>${player}</h3>
+<div class="price">$${price}</div>
 <button>Buy</button>
 </div>
+`;
+
+});
+
+</script>
 
 </div>
 
