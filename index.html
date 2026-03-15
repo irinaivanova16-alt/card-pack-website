@@ -1,48 +1,73 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>Soccer Card Shop</title>
+<title>Image Value Lab</title>
 
 <style>
 
 body{
 font-family:Arial;
-background:#0f172a;
+margin:0;
+background:linear-gradient(135deg,#1e3a8a,#0f172a);
 color:white;
-text-align:center;
 }
 
-.shop{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:20px;
-padding:40px;
+header{
+padding:20px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
 }
 
 .card{
 background:#1e293b;
-padding:15px;
-border-radius:10px;
-}
-
-.card img{
-width:100%;
-border-radius:8px;
-}
-
-.price{
-color:#22c55e;
-font-size:18px;
-margin:8px;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 button{
 background:#3b82f6;
 border:none;
-padding:8px 15px;
+padding:10px 20px;
+border-radius:8px;
 color:white;
-border-radius:6px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+img{
+max-width:100%;
+border-radius:10px;
+margin-top:15px;
+}
+
+.price{
+font-size:24px;
+color:#22c55e;
+margin-top:10px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.gallery img{
+width:100%;
 }
 
 </style>
@@ -50,186 +75,78 @@ border-radius:6px;
 
 <body>
 
-<h1>⚽ Soccer Card Shop</h1>
+<header>
+🧠 Image Value Lab
+</header>
 
-<div class="shop">
-
-<div class="card">
-<img src="images/messi.png">
-<h3>Lionel Messi</h3>
-<div class="price">$120</div>
-<button>Buy</button>
-</div>
+<div class="container">
 
 <div class="card">
-<img src="images/ronaldo.png">
-<h3>Cristiano Ronaldo</h3>
-<div class="price">$115</div>
-<button>Buy</button>
-</div>
 
-<div class="card">
-<img src="images/mbappe.png">
-<h3>Kylian Mbappé</h3>
-<div class="price">$110</div>
-<button>Buy</button>
+<h2>Upload an Image</h2>
+
+<input type="file" id="upload" accept="image/*">
+
+<img id="preview" style="display:none;">
+
+<div class="price" id="price"></div>
+<div id="rarity"></div>
+
 </div>
 
 <div class="card">
-<img src="images/haaland.png">
-<h3>Erling Haaland</h3>
-<div class="price">$108</div>
-<button>Buy</button>
-</div>
 
-<div class="card">
-<img src="images/neymar.png">
-<h3>Neymar</h3>
-<div class="price">$102</div>
-<button>Buy</button>
-</div>
+<h2>Your Image Gallery</h2>
 
-<div class="card">
-<img src="images/bellingham.png">
-<h3>Jude Bellingham</h3>
-<div class="price">$100</div>
-<button>Buy</button>
-</div>
+<div class="gallery" id="gallery"></div>
 
-<div class="card">
-<img src="images/debruyne.png">
-<h3>Kevin De Bruyne</h3>
-<div class="price">$98</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/salah.png">
-<h3>Mohamed Salah</h3>
-<div class="price">$97</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/vinicius.png">
-<h3>Vinicius Jr</h3>
-<div class="price">$96</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/kane.png">
-<h3>Harry Kane</h3>
-<div class="price">$95</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/lewandowski.png">
-<h3>Robert Lewandowski</h3>
-<div class="price">$93</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/saka.png">
-<h3>Bukayo Saka</h3>
-<div class="price">$92</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/pedri.png">
-<h3>Pedri</h3>
-<div class="price">$90</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/modric.png">
-<h3>Luka Modric</h3>
-<div class="price">$88</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/griezmann.png">
-<h3>Antoine Griezmann</h3>
-<div class="price">$87</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/benzema.png">
-<h3>Karim Benzema</h3>
-<div class="price">$86</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/son.png">
-<h3>Son Heung-min</h3>
-<div class="price">$85</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/foden.png">
-<h3>Phil Foden</h3>
-<div class="price">$84</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/rodri.png">
-<h3>Rodri</h3>
-<div class="price">$83</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/bernardo.png">
-<h3>Bernardo Silva</h3>
-<div class="price">$82</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/davies.png">
-<h3>Alphonso Davies</h3>
-<div class="price">$80</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/hakimi.png">
-<h3>Achraf Hakimi</h3>
-<div class="price">$79</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/osimhen.png">
-<h3>Victor Osimhen</h3>
-<div class="price">$78</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/gavi.png">
-<h3>Gavi</h3>
-<div class="price">$76</div>
-<button>Buy</button>
-</div>
-
-<div class="card">
-<img src="images/musiala.png">
-<h3>Jamal Musiala</h3>
-<div class="price">$75</div>
-<button>Buy</button>
 </div>
 
 </div>
+
+<script>
+
+const upload = document.getElementById("upload");
+const preview = document.getElementById("preview");
+const price = document.getElementById("price");
+const rarity = document.getElementById("rarity");
+const gallery = document.getElementById("gallery");
+
+const rarityLevels = [
+"Common",
+"Uncommon",
+"Rare",
+"Epic",
+"Legendary"
+];
+
+upload.addEventListener("change", function(){
+
+const file = upload.files[0];
+
+if(file){
+
+const imageURL = URL.createObjectURL(file);
+
+preview.src = imageURL;
+preview.style.display = "block";
+
+let estimatedPrice = Math.floor(Math.random()*500)+20;
+let rarityScore = rarityLevels[Math.floor(Math.random()*rarityLevels.length)];
+
+price.innerText = "Estimated Value: $" + estimatedPrice;
+rarity.innerText = "Rarity Level: " + rarityScore;
+
+const img = document.createElement("img");
+img.src = imageURL;
+
+gallery.appendChild(img);
+
+}
+
+});
+
+</script>
 
 </body>
 </html>
