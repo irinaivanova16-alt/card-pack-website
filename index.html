@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Soccer Card Shop</title>
 
@@ -12,13 +13,9 @@ color:white;
 text-align:center;
 }
 
-h1{
-margin-top:30px;
-}
-
 .shop{
 display:grid;
-grid-template-columns:repeat(5, 1fr);
+grid-template-columns:repeat(5,1fr);
 gap:20px;
 padding:40px;
 }
@@ -27,7 +24,6 @@ padding:40px;
 background:#1e293b;
 padding:15px;
 border-radius:10px;
-box-shadow:0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .card img{
@@ -36,22 +32,17 @@ border-radius:8px;
 }
 
 .price{
-font-size:18px;
-margin:8px 0;
 color:#22c55e;
+font-size:18px;
+margin:8px;
 }
 
 button{
 background:#3b82f6;
 border:none;
 padding:8px 15px;
-border-radius:6px;
 color:white;
-cursor:pointer;
-}
-
-button:hover{
-background:#2563eb;
+border-radius:6px;
 }
 
 </style>
@@ -60,40 +51,183 @@ background:#2563eb;
 <body>
 
 <h1>⚽ Soccer Card Shop</h1>
-<p>Browse our soccer card collection!</p>
 
 <div class="shop">
 
-<!-- 25 CARDS -->
-
-<script>
-
-const players = [
-"Lionel Messi","Cristiano Ronaldo","Kylian Mbappé","Erling Haaland","Neymar",
-"Jude Bellingham","Kevin De Bruyne","Mohamed Salah","Vinicius Jr","Harry Kane",
-"Robert Lewandowski","Bukayo Saka","Pedri","Luka Modric","Antoine Griezmann",
-"Karim Benzema","Son Heung-min","Phil Foden","Rodri","Bernardo Silva",
-"Alphonso Davies","Achraf Hakimi","Victor Osimhen","Gavi","Jamal Musiala"
-];
-
-const shop = document.querySelector(".shop");
-
-players.forEach((player,i)=>{
-
-let price = Math.floor(Math.random()*200)+20;
-
-shop.innerHTML += `
 <div class="card">
-<img src="https://picsum.photos/200/300?random=${i}">
-<h3>${player}</h3>
-<div class="price">$${price}</div>
+<img src="images/messi.png">
+<h3>Lionel Messi</h3>
+<div class="price">$120</div>
 <button>Buy</button>
 </div>
-`;
 
-});
+<div class="card">
+<img src="images/ronaldo.png">
+<h3>Cristiano Ronaldo</h3>
+<div class="price">$115</div>
+<button>Buy</button>
+</div>
 
-</script>
+<div class="card">
+<img src="images/mbappe.png">
+<h3>Kylian Mbappé</h3>
+<div class="price">$110</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/haaland.png">
+<h3>Erling Haaland</h3>
+<div class="price">$108</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/neymar.png">
+<h3>Neymar</h3>
+<div class="price">$102</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/bellingham.png">
+<h3>Jude Bellingham</h3>
+<div class="price">$100</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/debruyne.png">
+<h3>Kevin De Bruyne</h3>
+<div class="price">$98</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/salah.png">
+<h3>Mohamed Salah</h3>
+<div class="price">$97</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/vinicius.png">
+<h3>Vinicius Jr</h3>
+<div class="price">$96</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/kane.png">
+<h3>Harry Kane</h3>
+<div class="price">$95</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/lewandowski.png">
+<h3>Robert Lewandowski</h3>
+<div class="price">$93</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/saka.png">
+<h3>Bukayo Saka</h3>
+<div class="price">$92</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/pedri.png">
+<h3>Pedri</h3>
+<div class="price">$90</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/modric.png">
+<h3>Luka Modric</h3>
+<div class="price">$88</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/griezmann.png">
+<h3>Antoine Griezmann</h3>
+<div class="price">$87</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/benzema.png">
+<h3>Karim Benzema</h3>
+<div class="price">$86</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/son.png">
+<h3>Son Heung-min</h3>
+<div class="price">$85</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/foden.png">
+<h3>Phil Foden</h3>
+<div class="price">$84</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/rodri.png">
+<h3>Rodri</h3>
+<div class="price">$83</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/bernardo.png">
+<h3>Bernardo Silva</h3>
+<div class="price">$82</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/davies.png">
+<h3>Alphonso Davies</h3>
+<div class="price">$80</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/hakimi.png">
+<h3>Achraf Hakimi</h3>
+<div class="price">$79</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/osimhen.png">
+<h3>Victor Osimhen</h3>
+<div class="price">$78</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/gavi.png">
+<h3>Gavi</h3>
+<div class="price">$76</div>
+<button>Buy</button>
+</div>
+
+<div class="card">
+<img src="images/musiala.png">
+<h3>Jamal Musiala</h3>
+<div class="price">$75</div>
+<button>Buy</button>
+</div>
 
 </div>
 
